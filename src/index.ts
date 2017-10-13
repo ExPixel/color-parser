@@ -502,7 +502,7 @@ const CSSFunctions: { [f: string]: ((args: string) => RGBA | null) } = {
  */
 function parseColor(colorString: string | number): [number, number, number, number] | null {
     if (typeof colorString === "string") {
-        colorString = colorString.toLowerCase();
+        colorString = colorString.toLowerCase().trim();
         const hexMatch = colorString.match(/^\#(\w{3,8})$/);
 
         if (hexMatch) {
