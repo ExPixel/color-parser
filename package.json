@@ -1,0 +1,36 @@
+{
+  "name": "colorparser",
+  "version": "1.0.0",
+  "description": "Parser for CSS color strings.",
+  "main": "dist/index.js",
+  "types": "dist/types/index.d.ts",
+  "repository": "https://github.com/ExPixel/color-parser",
+  "author": "Marc Celestin <adolphc@outlook.com>",
+  "license": "MIT",
+  "private": false,
+  "files": [
+    "dist"
+  ],
+  "ava": {
+    "files": [
+      "dist-test/test/*.js"
+    ]
+  },
+  "scripts": {
+    "lint": "tslint 'src/**/*.ts' 'test/**/*.ts'",
+    "build": "tsc",
+    "start": "tsc -w",
+    "test": "tsc -p test.tsconfig.json && nyc ava",
+    "prepare": "npm run build",
+    "pretest": "rimraf dist dist-test",
+    "prebuild": "rimraf dist dist-test"
+  },
+  "devDependencies": {
+    "ava": "^0.22.0",
+    "nyc": "^11.2.1",
+    "rimraf": "^2.6.2",
+    "tslint": "^5.7.0",
+    "typescript": "^2.5.3"
+  },
+  "dependencies": {}
+}

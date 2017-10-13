@@ -54,6 +54,15 @@ typings/
 # Yarn Integrity file
 .yarn-integrity
 
+# Yarn Lock file
+yarn.lock
+
 # dotenv environment variables file
 .env
 
+# Editor
+.vscode
+
+#Build files
+dist
+dist-test

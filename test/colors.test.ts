@@ -1,0 +1,183 @@
+import test from "ava";
+import parseColor = require("../src/");
+
+// 0xAARRGGBB
+test("32bit number to RGBA", (t) => {
+    t.deepEqual(parseColor(0xFF000000), [0x00, 0x00, 0x00, 1]);
+    t.deepEqual(parseColor(0xFFFFFFFF), [0xFF, 0xFF, 0xFF, 1]);
+});
+
+// Hex String
+test("Hex Color Strings", (t) => {
+    t.deepEqual(parseColor("#ABC"), [0xAA, 0xBB, 0xCC, 1]);
+    t.deepEqual(parseColor("#EFFECC"), [0xEF, 0xFE, 0xCC, 1]);
+    t.deepEqual(parseColor("#DDAADEFC"), [0xAA, 0xDE, 0xFC, 0xDD/0xFF]);
+});
+
+
+test("Bad Hex Color Strings", (t) => {
+    t.is(parseColor("#ABCC"), null);
+    t.is(parseColor("#EFFECX"), null);
+    t.is(parseColor("#A"), null);
+});
+
+// BAD Function
+test("nope(a, b, c)", (t) => {
+    t.is(parseColor(`nope(0, 0, 0)`), null);
+});
+
+// Named CSS Colors:
+test("Named Color Test", (t) => {
+    t.deepEqual(parseColor("aliceblue"), [240, 248, 255, 1.0])
+    t.deepEqual(parseColor("antiquewhite"), [250, 235, 215, 1.0])
+    t.deepEqual(parseColor("aqua"), [0, 255, 255, 1.0])
+    t.deepEqual(parseColor("aquamarine"), [127, 255, 212, 1.0])
+    t.deepEqual(parseColor("azure"), [240, 255, 255, 1.0])
+    t.deepEqual(parseColor("beige"), [245, 245, 220, 1.0])
+    t.deepEqual(parseColor("bisque"), [255, 228, 196, 1.0])
+    t.deepEqual(parseColor("black"), [0, 0, 0, 1.0])
+    t.deepEqual(parseColor("blanchedalmond"), [255, 235, 205, 1.0])
+    t.deepEqual(parseColor("blue"), [0, 0, 255, 1.0])
+    t.deepEqual(parseColor("blueviolet"), [138, 43, 226, 1.0])
+    t.deepEqual(parseColor("brown"), [165, 42, 42, 1.0])
+    t.deepEqual(parseColor("burlywood"), [222, 184, 135, 1.0])
+    t.deepEqual(parseColor("cadetblue"), [95, 158, 160, 1.0])
+    t.deepEqual(parseColor("chartreuse"), [127, 255, 0, 1.0])
+    t.deepEqual(parseColor("chocolate"), [210, 105, 30, 1.0])
+    t.deepEqual(parseColor("coral"), [255, 127, 80, 1.0])
+    t.deepEqual(parseColor("cornflowerblue"), [100, 149, 237, 1.0])
+    t.deepEqual(parseColor("cornsilk"), [255, 248, 220, 1.0])
+    t.deepEqual(parseColor("crimson"), [220, 20, 60, 1.0])
+    t.deepEqual(parseColor("cyan"), [0, 255, 255, 1.0])
+    t.deepEqual(parseColor("darkblue"), [0, 0, 139, 1.0])
+    t.deepEqual(parseColor("darkcyan"), [0, 139, 139, 1.0])
+    t.deepEqual(parseColor("darkgoldenrod"), [184, 134, 11, 1.0])
+    t.deepEqual(parseColor("darkgray"), [169, 169, 169, 1.0])
+    t.deepEqual(parseColor("darkgrey"), [169, 169, 169, 1.0])
+    t.deepEqual(parseColor("darkgreen"), [0, 100, 0, 1.0])
+    t.deepEqual(parseColor("darkkhaki"), [189, 183, 107, 1.0])
+    t.deepEqual(parseColor("darkmagenta"), [139, 0, 139, 1.0])
+    t.deepEqual(parseColor("darkolivegreen"), [85, 107, 47, 1.0])
+    t.deepEqual(parseColor("darkorange"), [255, 140, 0, 1.0])
+    t.deepEqual(parseColor("darkorchid"), [153, 50, 204, 1.0])
+    t.deepEqual(parseColor("darkred"), [139, 0, 0, 1.0])
+    t.deepEqual(parseColor("darksalmon"), [233, 150, 122, 1.0])
+    t.deepEqual(parseColor("darkseagreen"), [143, 188, 143, 1.0])
+    t.deepEqual(parseColor("darkslateblue"), [72, 61, 139, 1.0])
+    t.deepEqual(parseColor("darkslategray"), [47, 79, 79, 1.0])
+    t.deepEqual(parseColor("darkslategrey"), [47, 79, 79, 1.0])
+    t.deepEqual(parseColor("darkturquoise"), [0, 206, 209, 1.0])
+    t.deepEqual(parseColor("darkviolet"), [148, 0, 211, 1.0])
+    t.deepEqual(parseColor("deeppink"), [255, 20, 147, 1.0])
+    t.deepEqual(parseColor("deepskyblue"), [0, 191, 255, 1.0])
+    t.deepEqual(parseColor("dimgray"), [105, 105, 105, 1.0])
+    t.deepEqual(parseColor("dimgrey"), [105, 105, 105, 1.0])
+    t.deepEqual(parseColor("dodgerblue"), [30, 144, 255, 1.0])
+    t.deepEqual(parseColor("firebrick"), [178, 34, 34, 1.0])
+    t.deepEqual(parseColor("floralwhite"), [255, 250, 240, 1.0])
+    t.deepEqual(parseColor("forestgreen"), [34, 139, 34, 1.0])
+    t.deepEqual(parseColor("fuchsia"), [255, 0, 255, 1.0])
+    t.deepEqual(parseColor("gainsboro"), [220, 220, 220, 1.0])
+    t.deepEqual(parseColor("ghostwhite"), [248, 248, 255, 1.0])
+    t.deepEqual(parseColor("gold"), [255, 215, 0, 1.0])
+    t.deepEqual(parseColor("goldenrod"), [218, 165, 32, 1.0])
+    t.deepEqual(parseColor("gray"), [128, 128, 128, 1.0])
+    t.deepEqual(parseColor("grey"), [128, 128, 128, 1.0])
+    t.deepEqual(parseColor("green"), [0, 128, 0, 1.0])
+    t.deepEqual(parseColor("greenyellow"), [173, 255, 47, 1.0])
+    t.deepEqual(parseColor("honeydew"), [240, 255, 240, 1.0])
+    t.deepEqual(parseColor("hotpink"), [255, 105, 180, 1.0])
+    t.deepEqual(parseColor("indianred"), [205, 92, 92, 1.0])
+    t.deepEqual(parseColor("indigo"), [75, 0, 130, 1.0])
+    t.deepEqual(parseColor("ivory"), [255, 255, 240, 1.0])
+    t.deepEqual(parseColor("khaki"), [240, 230, 140, 1.0])
+    t.deepEqual(parseColor("lavender"), [230, 230, 250, 1.0])
+    t.deepEqual(parseColor("lavenderblush"), [255, 240, 245, 1.0])
+    t.deepEqual(parseColor("lawngreen"), [124, 252, 0, 1.0])
+    t.deepEqual(parseColor("lemonchiffon"), [255, 250, 205, 1.0])
+    t.deepEqual(parseColor("lightblue"), [173, 216, 230, 1.0])
+    t.deepEqual(parseColor("lightcoral"), [240, 128, 128, 1.0])
+    t.deepEqual(parseColor("lightcyan"), [224, 255, 255, 1.0])
+    t.deepEqual(parseColor("lightgoldenrodyellow"), [250, 250, 210, 1.0])
+    t.deepEqual(parseColor("lightgray"), [211, 211, 211, 1.0])
+    t.deepEqual(parseColor("lightgrey"), [211, 211, 211, 1.0])
+    t.deepEqual(parseColor("lightgreen"), [144, 238, 144, 1.0])
+    t.deepEqual(parseColor("lightpink"), [255, 182, 193, 1.0])
+    t.deepEqual(parseColor("lightsalmon"), [255, 160, 122, 1.0])
+    t.deepEqual(parseColor("lightseagreen"), [32, 178, 170, 1.0])
+    t.deepEqual(parseColor("lightskyblue"), [135, 206, 250, 1.0])
+    t.deepEqual(parseColor("lightslategray"), [119, 136, 153, 1.0])
+    t.deepEqual(parseColor("lightslategrey"), [119, 136, 153, 1.0])
+    t.deepEqual(parseColor("lightsteelblue"), [176, 196, 222, 1.0])
+    t.deepEqual(parseColor("lightyellow"), [255, 255, 224, 1.0])
+    t.deepEqual(parseColor("lime"), [0, 255, 0, 1.0])
+    t.deepEqual(parseColor("limegreen"), [50, 205, 50, 1.0])
+    t.deepEqual(parseColor("linen"), [250, 240, 230, 1.0])
+    t.deepEqual(parseColor("magenta"), [255, 0, 255, 1.0])
+    t.deepEqual(parseColor("maroon"), [128, 0, 0, 1.0])
+    t.deepEqual(parseColor("mediumaquamarine"), [102, 205, 170, 1.0])
+    t.deepEqual(parseColor("mediumblue"), [0, 0, 205, 1.0])
+    t.deepEqual(parseColor("mediumorchid"), [186, 85, 211, 1.0])
+    t.deepEqual(parseColor("mediumpurple"), [147, 112, 219, 1.0])
+    t.deepEqual(parseColor("mediumseagreen"), [60, 179, 113, 1.0])
+    t.deepEqual(parseColor("mediumslateblue"), [123, 104, 238, 1.0])
+    t.deepEqual(parseColor("mediumspringgreen"), [0, 250, 154, 1.0])
+    t.deepEqual(parseColor("mediumturquoise"), [72, 209, 204, 1.0])
+    t.deepEqual(parseColor("mediumvioletred"), [199, 21, 133, 1.0])
+    t.deepEqual(parseColor("midnightblue"), [25, 25, 112, 1.0])
+    t.deepEqual(parseColor("mintcream"), [245, 255, 250, 1.0])
+    t.deepEqual(parseColor("mistyrose"), [255, 228, 225, 1.0])
+    t.deepEqual(parseColor("moccasin"), [255, 228, 181, 1.0])
+    t.deepEqual(parseColor("navajowhite"), [255, 222, 173, 1.0])
+    t.deepEqual(parseColor("navy"), [0, 0, 128, 1.0])
+    t.deepEqual(parseColor("oldlace"), [253, 245, 230, 1.0])
+    t.deepEqual(parseColor("olive"), [128, 128, 0, 1.0])
+    t.deepEqual(parseColor("olivedrab"), [107, 142, 35, 1.0])
+    t.deepEqual(parseColor("orange"), [255, 165, 0, 1.0])
+    t.deepEqual(parseColor("orangered"), [255, 69, 0, 1.0])
+    t.deepEqual(parseColor("orchid"), [218, 112, 214, 1.0])
+    t.deepEqual(parseColor("palegoldenrod"), [238, 232, 170, 1.0])
+    t.deepEqual(parseColor("palegreen"), [152, 251, 152, 1.0])
+    t.deepEqual(parseColor("paleturquoise"), [175, 238, 238, 1.0])
+    t.deepEqual(parseColor("palevioletred"), [219, 112, 147, 1.0])
+    t.deepEqual(parseColor("papayawhip"), [255, 239, 213, 1.0])
+    t.deepEqual(parseColor("peachpuff"), [255, 218, 185, 1.0])
+    t.deepEqual(parseColor("peru"), [205, 133, 63, 1.0])
+    t.deepEqual(parseColor("pink"), [255, 192, 203, 1.0])
+    t.deepEqual(parseColor("plum"), [221, 160, 221, 1.0])
+    t.deepEqual(parseColor("powderblue"), [176, 224, 230, 1.0])
+    t.deepEqual(parseColor("purple"), [128, 0, 128, 1.0])
+    t.deepEqual(parseColor("rebeccapurple"), [102, 51, 153, 1.0])
+    t.deepEqual(parseColor("red"), [255, 0, 0, 1.0])
+    t.deepEqual(parseColor("rosybrown"), [188, 143, 143, 1.0])
+    t.deepEqual(parseColor("royalblue"), [65, 105, 225, 1.0])
+    t.deepEqual(parseColor("saddlebrown"), [139, 69, 19, 1.0])
+    t.deepEqual(parseColor("salmon"), [250, 128, 114, 1.0])
+    t.deepEqual(parseColor("sandybrown"), [244, 164, 96, 1.0])
+    t.deepEqual(parseColor("seagreen"), [46, 139, 87, 1.0])
+    t.deepEqual(parseColor("seashell"), [255, 245, 238, 1.0])
+    t.deepEqual(parseColor("sienna"), [160, 82, 45, 1.0])
+    t.deepEqual(parseColor("silver"), [192, 192, 192, 1.0])
+    t.deepEqual(parseColor("skyblue"), [135, 206, 235, 1.0])
+    t.deepEqual(parseColor("slateblue"), [106, 90, 205, 1.0])
+    t.deepEqual(parseColor("slategray"), [112, 128, 144, 1.0])
+    t.deepEqual(parseColor("slategrey"), [112, 128, 144, 1.0])
+    t.deepEqual(parseColor("snow"), [255, 250, 250, 1.0])
+    t.deepEqual(parseColor("springgreen"), [0, 255, 127, 1.0])
+    t.deepEqual(parseColor("steelblue"), [70, 130, 180, 1.0])
+    t.deepEqual(parseColor("tan"), [210, 180, 140, 1.0])
+    t.deepEqual(parseColor("teal"), [0, 128, 128, 1.0])
+    t.deepEqual(parseColor("thistle"), [216, 191, 216, 1.0])
+    t.deepEqual(parseColor("tomato"), [255, 99, 71, 1.0])
+    t.deepEqual(parseColor("turquoise"), [64, 224, 208, 1.0])
+    t.deepEqual(parseColor("violet"), [238, 130, 238, 1.0])
+    t.deepEqual(parseColor("wheat"), [245, 222, 179, 1.0])
+    t.deepEqual(parseColor("white"), [255, 255, 255, 1.0])
+    t.deepEqual(parseColor("whitesmoke"), [245, 245, 245, 1.0])
+    t.deepEqual(parseColor("yellow"), [255, 255, 0, 1.0])
+    t.deepEqual(parseColor("yellowgreen"), [154, 205, 50, 1.0])
+});
+
+test("parseColor with bad arguments is just null.", (t) => {
+    t.is(parseColor({} as any), null);
+});
