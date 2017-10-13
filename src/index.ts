@@ -492,6 +492,10 @@ const CSSFunctions: { [f: string]: ((args: string) => RGBA | null) } = {
  * - "rgba(R, G, B, A)"
  * - "hsl(H, S, L)"
  * - "hsla(H, S, L, A)"
+ * - "hsv(H, S, V)"
+ * - "hsva(H, S, V, A)"
+ * - "cmyk(C, M, Y, K)"
+ * - "cmyka(C, M, Y, K, A)"
  * 
  * Keep in mind that except in the case of "#aarrggbb" the A component is a float in the range [0, 1], not a byte like R, G, and B.
  * @param colorString The input color string to parse. Should be in the same format as colors used in CSS.
