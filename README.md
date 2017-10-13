@@ -1,4 +1,8 @@
 # color-parser
+[![npm](https://img.shields.io/npm/v/colorparser.svg)](https://www.npmjs.com/package/colorparser)
+[![Build Status](https://travis-ci.org/ExPixel/color-parser.svg?branch=master)](https://travis-ci.org/ExPixel/color-parser)
+
+
 Parser for CSS color strings.
 
 Usage
