@@ -1,6 +1,6 @@
 {
   "name": "colorparser",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Parser for CSS color strings.",
   "main": "dist/index.js",
   "types": "dist/types/index.d.ts",
