@@ -8,6 +8,7 @@
   "author": "Marc Celestin <adolphc@outlook.com>",
   "license": "MIT",
   "private": false,
+  "readme": "README.md",
   "files": [
     "dist"
   ],
