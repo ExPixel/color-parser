@@ -18,3 +18,17 @@ const magenta = parseColor("#FF00FF"); // [255, 0, 255, 1.0]
 
 // ...
 ```
+
+__Supported Formats:__
+- `0xAARRGGBB`
+- `"#rrggbb"`
+- `"#aarrggbb"`
+- `"#rgb"`
+- `"rgb(R, G, B)"`
+- `"rgba(R, G, B, A)"`
+- `"hsl(H, S, L)"`
+- `"hsla(H, S, L, A)"`
+- `"hsv(H, S, V)"`
+- `"hsva(H, S, V, A)"`
+- `"cmyk(C, M, Y, K)"`
+- `"cmyka(C, M, Y, K, A)"`
